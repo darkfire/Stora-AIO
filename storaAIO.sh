@@ -545,15 +545,13 @@ if [ ! -e /opt/bin/ipkg ]
     then
     # install ipkg
         echo "IPKG not found. Installing..."
-    installIPKG
-    
+    installIPKG    
+fi
+
     #install perl and irss
     /opt/bin/ipkg install perl
     /opt/bin/ipkg install irssi
     /opt/bin/ipkg install screen
-
-
-fi
 return 0
 }
 
