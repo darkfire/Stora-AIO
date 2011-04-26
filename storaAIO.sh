@@ -61,6 +61,7 @@ cat <<MENU_END
   7) Install NZBget
   8) Install NZBget-server
   9) Install Transmission
+ 10) Install Irssi
   
   X. exit
   
@@ -79,10 +80,11 @@ case $selection in
     3) installIPKG;         checkIt;;
     4) moveOpt;             checkIt;;
     5) installNFS;          checkIt;;
-    6) disableAP;            checkIt;;
+    6) disableAP;           checkIt;;
     7) installNZBget;       checkIt;;
     8) installNZBgetServer; checkIt;;
     9) installTransmission; checkIt;;
+   10) installIrssi;        checkIt;;
     X|x|Q|q) tput sgr0; echo ""; exit 0   ;;
     *) TEXT="Error: Invalid Selection";   ;;
 
@@ -533,6 +535,28 @@ echo "Adding transmission-daemon to startup..."
 return 0
 
 }
+
+installIrssi() {
+  clear
+echo "Installing Irssi"
+echo ""
+# check if we have IPKG
+if [ ! -e /opt/bin/ipkg ]
+    then
+    # install ipkg
+        echo "IPKG not found. Installing..."
+    installIPKG
+    
+    #install perl and irss
+    /opt/bin/ipkg install perl
+    /opt/bin/ipkg install irssi
+    /opt/bin/ipkg install screen
+
+
+fi
+return 0
+}
+
 # end of functions #
 
 # nice and white
